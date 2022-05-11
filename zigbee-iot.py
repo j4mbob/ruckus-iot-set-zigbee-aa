@@ -27,17 +27,12 @@ class Ruckus_IoT():
 		return parseargs['username'],parseargs['password'],parseargs['host']
 		
 	def logon(self,username,password,hostname):
-		data = {
-			"username": username,
-			"password": password,
-			"timeZoneUtcOffset": "+00:00"
-		 }
 
 		self.hostname = hostname
 
 		try: 
 			self.session = requests.Session()
-			self.request = self.session.get('https://'+ self.hostname + '/v1/oauth/login', verify=False,json=data,auth=(username, password))
+			self.request = self.session.get('https://'+ self.hostname + '/v1/oauth/login', verify=False,auth=(username, password))
 			output = self.request.json()
 			self.session_token = output['access_token']
 			self.request.raise_for_status()
