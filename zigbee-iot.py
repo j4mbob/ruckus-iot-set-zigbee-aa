@@ -12,7 +12,7 @@ try:
 	requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 except ImportError as e:
-	print('error importing modules' + e )
+	print('error importing modules: ' + str(e))
 	exit(1)
 
 class Ruckus_IoT():
